@@ -1,3 +1,4 @@
+import 'package:albab/Constants/constants.dart';
 import 'package:albab/screen/meals/meals_body.dart';
 import 'package:flutter/material.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
@@ -7,7 +8,7 @@ class MealsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kGrey,
       body: MealsBody(),
     );
   }

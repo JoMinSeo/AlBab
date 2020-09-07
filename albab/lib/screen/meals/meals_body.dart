@@ -1,5 +1,4 @@
 import 'package:albab/Constants/constants.dart';
-import 'package:albab/screen/schoolsearch/search_page.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +15,6 @@ class _MealsBodyState extends State<MealsBody> {
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenHeight(20),
       ),
-      child: 
     );
   }
 }

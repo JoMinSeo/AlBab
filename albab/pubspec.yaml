@@ -48,11 +48,17 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/
+    - assets/images/mainimage.png
   fonts:
-    - family: Noto
+    - family: NaNum
       fonts:
-      - asset: assets/fonts/NotoSansCJKkr-Black.otf
+      - asset: assets/fonts/nanum_squareb.ttf
+        weight: 500
+      - asset: assets/fonts/nanum_squareeb.ttf
+        weight: 700
+      - asset: assets/fonts/nanum_squarel.ttf
+        weight: 300
+      - asset: assets/fonts/nanum_squarer.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
