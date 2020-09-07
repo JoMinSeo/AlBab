@@ -1,3 +1,4 @@
+import 'package:albab/screen/meals/meals_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFF067302)
       ),
-      home: SchoolSearch(),
+      home: MealsPage(),
     );
   }
 }
