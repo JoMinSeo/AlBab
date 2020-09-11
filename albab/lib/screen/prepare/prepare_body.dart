@@ -45,7 +45,7 @@ class _PrepareBodyState extends State<PrepareBody> {
               shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10)),
               child: InkWell(
                 child: RaisedButton(
-                  child: Text('시작',style: kNaNumBold.copyWith(fontSize: 24,color: Colors.white),),
+                  child: Text('시작', style: kNaNumBold.copyWith(fontSize: 24,color: Colors.white),),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => MealsPage()));
                   },

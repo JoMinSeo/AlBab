@@ -2,22 +2,21 @@ import 'package:albab/Constants/constants.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/material.dart';
 
-class MealsBody extends StatefulWidget {
+class BugBody extends StatefulWidget {
   @override
-  _MealsBodyState createState() => _MealsBodyState();
+  _BugBodyState createState() => _BugBodyState();
 }
 
-class _MealsBodyState extends State<MealsBody> {
-
+class _BugBodyState extends State<BugBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: getProportionateScreenHeight(20),
+        horizontal: getProportionateScreenWidth(20),
       ),
       child: Center(
         child: Text(
-          'MEALS',
+          'BUG',
           style: kNaNumRegular.copyWith(fontSize: 42),
         ),
       ),

@@ -1,5 +1,5 @@
 # albab
 
-A new Flutter application.
+학생들을 위한 급식 알람앱.
 
 
