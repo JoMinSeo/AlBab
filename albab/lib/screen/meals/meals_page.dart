@@ -1,9 +1,7 @@
 import 'package:albab/Constants/constants.dart';
 import 'package:albab/providers/screenChange.dart';
-import 'package:albab/screen/bug/bug_body.dart';
 import 'package:albab/screen/bug/bug_page.dart';
 import 'package:albab/screen/meals/meals_body.dart';
-import 'package:albab/screen/schoolsearch/search_body.dart';
 import 'package:albab/screen/schoolsearch/search_page.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
