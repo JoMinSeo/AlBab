@@ -7,7 +7,7 @@ class MealsBody extends StatefulWidget {
   _MealsBodyState createState() => _MealsBodyState();
 }
 
-class _MealsBodyState extends State<MealsBody> {
+class _MealsBodyState extends State<MealsBody> with AutomaticKeepAliveClientMixin{
 
   @override
   Widget build(BuildContext context) {
@@ -23,4 +23,7 @@ class _MealsBodyState extends State<MealsBody> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

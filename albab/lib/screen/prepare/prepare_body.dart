@@ -1,5 +1,5 @@
 import 'package:albab/Constants/constants.dart';
-import 'package:albab/screen/meals/meals_page.dart';
+import 'package:albab/screen/route_page.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +54,7 @@ class _PrepareBodyState extends State<PrepareBody> {
                   child: RaisedButton(
                     child: Text('시작', style: kNaNumBold.copyWith(fontSize: 24,color: Colors.white),),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => MealsPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavPage()));
                     },
                   ),
                 ),

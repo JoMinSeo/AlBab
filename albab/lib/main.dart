@@ -1,6 +1,4 @@
 import 'package:albab/providers/screenChange.dart';
-import 'package:albab/screen/meals/meals_page.dart';
-import 'package:albab/screen/prepare/prepare_body.dart';
 import 'package:albab/screen/prepare/prepare_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

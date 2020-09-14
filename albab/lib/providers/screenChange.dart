@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ScreenChange extends ChangeNotifier{
-  int selectedPage = 0;
+  int _selectedPage;
+  int get selectedPage => _selectedPage;
+
+  ScreenChange();
 
   void setPage(int pageNum){
-    selectedPage = pageNum;
+    _selectedPage = pageNum;
+    notifyListeners();
   }
 }

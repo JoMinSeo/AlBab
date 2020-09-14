@@ -7,7 +7,7 @@ class BugBody extends StatefulWidget {
   _BugBodyState createState() => _BugBodyState();
 }
 
-class _BugBodyState extends State<BugBody> {
+class _BugBodyState extends State<BugBody> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,4 +22,7 @@ class _BugBodyState extends State<BugBody> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

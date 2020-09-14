@@ -7,20 +7,34 @@ class SearchBody extends StatefulWidget {
   _SearchBodyState createState() => _SearchBodyState();
 }
 
-class _SearchBodyState extends State<SearchBody> {
+class _SearchBodyState extends State<SearchBody> with AutomaticKeepAliveClientMixin{
+  FocusNode myFocusNode;
+
+  @override
+  void initState() {
+    myFocusNode = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    myFocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
         Container(
-          // Background
           child: Center(
-              child: Text("Home",
-                  style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white))),
-          color: kImproveGrey, height: SizeConfig.screenHeight*0.2,
+            child: Text(
+              "Home",
+              style: kNaNumExtraBold.copyWith(fontSize: 25, color: Colors.white),
+            ),
+          ),
+          color: kPurple,
+          height: SizeConfig.screenHeight * 0.2,
           width: SizeConfig.screenWidth,
         ),
         Container(), // Required some widget in between to float AppBar
@@ -33,10 +47,13 @@ class _SearchBodyState extends State<SearchBody> {
             backgroundColor: Colors.white,
             leading: Icon(
               Icons.menu,
-              color: kGrey,
+              color: kPurple,
             ),
             primary: false,
             title: TextField(
+              style: kNaNumRegular,
+              autofocus: true,
+              focusNode: myFocusNode,
               decoration: InputDecoration(
                 hintText: "Search",
                 border: InputBorder.none,
@@ -45,7 +62,7 @@ class _SearchBodyState extends State<SearchBody> {
             ),
             actions: <Widget>[
               IconButton(
-                icon: Icon(Icons.search, color: kImproveGrey),
+                icon: Icon(Icons.search, color: kPurple),
                 onPressed: () {},
               ),
             ],
@@ -54,4 +71,7 @@ class _SearchBodyState extends State<SearchBody> {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
