@@ -17,7 +17,7 @@ class ConvexBar extends StatelessWidget {
       color: Colors.white,
       height: getProportionateScreenHeight(60),
       items: [
-        TabItem(icon: Icons.home, title: '홈'),
+        TabItem(icon: Icons.description, title: '메뉴'),
         TabItem(icon: Icons.search, title: '학교 검색'),
         TabItem(icon: Icons.report, title: '신고'),
       ],

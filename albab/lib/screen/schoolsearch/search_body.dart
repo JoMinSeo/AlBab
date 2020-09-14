@@ -7,7 +7,8 @@ class SearchBody extends StatefulWidget {
   _SearchBodyState createState() => _SearchBodyState();
 }
 
-class _SearchBodyState extends State<SearchBody> with AutomaticKeepAliveClientMixin{
+class _SearchBodyState extends State<SearchBody>
+    with AutomaticKeepAliveClientMixin {
   FocusNode myFocusNode;
 
   @override
@@ -29,11 +30,18 @@ class _SearchBodyState extends State<SearchBody> with AutomaticKeepAliveClientMi
         Container(
           child: Center(
             child: Text(
-              "Home",
-              style: kNaNumExtraBold.copyWith(fontSize: 25, color: Colors.white),
+              "학교 검색",
+              style:
+                  kNaNumExtraBold.copyWith(fontSize: 25, color: Colors.white),
             ),
           ),
-          color: kPurple,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
+            ),
+            color: kPurple,
+          ),
           height: SizeConfig.screenHeight * 0.2,
           width: SizeConfig.screenWidth,
         ),
@@ -46,13 +54,12 @@ class _SearchBodyState extends State<SearchBody> with AutomaticKeepAliveClientMi
           child: AppBar(
             backgroundColor: Colors.white,
             leading: Icon(
-              Icons.menu,
-              color: kPurple,
+              Icons.fastfood,
+              color: Colors.deepOrange,
             ),
             primary: false,
             title: TextField(
               style: kNaNumRegular,
-              autofocus: true,
               focusNode: myFocusNode,
               decoration: InputDecoration(
                 hintText: "Search",
