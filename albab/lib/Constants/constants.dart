@@ -10,4 +10,5 @@ const kPrimary = Color(0xFF001E58);
 const kBlueGrey = Color(0xFF6E7C97);
 const kImproveGrey = Color(0xFFC5C8CF);
 const kLightGrey = Color(0xFFFBFBFB);
-const kPurple = Color(0xFF655DB0);
+const kBlue = Color(0xFF0D1440);
+const kRed = Color(0xFFBF1736);
