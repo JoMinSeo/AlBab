@@ -19,33 +19,36 @@ class _MealsBodyState extends State<MealsBody>
           fit: BoxFit.cover,
         ),
       ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: getProportionateScreenHeight(20),
-          horizontal: getProportionateScreenWidth(20),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Center(
+            child: Padding(
+              padding: EdgeInsets.only(top: getProportionateScreenHeight(20)),
               child: Text(
                 "ALBAB",
                 style: kNaNumRegular.copyWith(fontSize: 42),
               ),
             ),
-            SizedBox(
-              height: getProportionateScreenHeight(50),
-            ),
-            Text(
+          ),
+          SizedBox(
+            height: getProportionateScreenHeight(50),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
+            child: Text(
               "menu",
               style: kNaNumRegular.copyWith(fontSize: 24),
             ),
-            Container(
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
+            child: Container(
               height: getProportionateScreenHeight(250),
               child: MenuList(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

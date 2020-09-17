@@ -28,7 +28,7 @@ IconData iconSelect(int index){
   }else if(index == 1){
     return Icons.wb_cloudy;
   }else if(index == 2){
-    return Icons.wb_incandescent;
+    return Icons.lightbulb_outline;
   }
 }
 
