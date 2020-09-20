@@ -12,9 +12,9 @@ class MealModel {
   factory MealModel.fromJson(Map<String, dynamic> json, bool makeData) {
     if (makeData) {
       return MealModel(
-        status: json["status"],
-        message: json["message"],
-        data: (json["data"]["school"] as List ).map( (e) => MealDataModel.fromJson(e)).toList(),
+          status: json["status"],
+          message: json["message"],
+          data: json["data"],
       );
     }
     return MealModel(
@@ -25,23 +25,18 @@ class MealModel {
 }
 
 class MealDataModel {
-  final String school_name;
-  final String school_locate;
-  final String office_code;
-  final String school_id;
+  final List<String> meal_menu;
+  final List<String> calories;
 
-  MealDataModel(
-      {@required this.school_name,
-      @required this.school_locate,
-      @required this.office_code,
-      @required this.school_id});
+  MealDataModel({
+    @required this.calories,
+    @required this.meal_menu,
+  });
 
   factory MealDataModel.fromJson(Map<String, dynamic> json) => MealDataModel(
-    school_name: json["school_name"],
-    school_locate: json["school_locate"],
-    office_code: json["office_code"],
-    school_id: json["school_id"],
+    meal_menu: json["meal"],
+    calories: json["calories"],
   );
 
-  static MealDataModel empty = MealDataModel(school_name: null, school_locate: null, office_code: null, school_id: null);
+  static MealDataModel empty = MealDataModel(meal_menu: null, calories: null);
 }
