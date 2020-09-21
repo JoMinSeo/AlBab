@@ -37,8 +37,8 @@ class _MealsBodyState extends State<MealsBody>
           Padding(
             padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
             child: Text(
-              "menu",
-              style: kNaNumRegular.copyWith(fontSize: 24),
+              "메뉴",
+              style: kNaNumRegular.copyWith(fontSize: 20),
             ),
           ),
           Padding(

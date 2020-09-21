@@ -1,4 +1,6 @@
 import 'package:albab/Constants/constants.dart';
+import 'package:albab/screen/schoolsearch/school_search.dart';
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
 class FloatingMenu extends StatefulWidget {
@@ -88,7 +90,19 @@ class _FloatingMenuState extends State<FloatingMenu>
       child: FloatingActionButton(
         backgroundColor: kBlue,
         heroTag: "FAB2",
-        onPressed: null,
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: SchoolSearchScreen(),
+              ),
+            ),
+          );
+        },
         tooltip: 'SEARCH',
         child: Icon(Icons.search),
       ),

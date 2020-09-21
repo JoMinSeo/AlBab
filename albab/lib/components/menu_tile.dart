@@ -33,7 +33,7 @@ class MenuTile extends StatelessWidget {
                     Text(
                       title,
                       style: kNaNumRegular.copyWith(
-                          color: Colors.white, fontSize: 16),
+                          color: Colors.white, fontSize: 20),
                     ),
                     SizedBox(
                       width: getProportionateScreenWidth(10),
