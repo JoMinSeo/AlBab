@@ -1,27 +1,26 @@
-import 'package:albab/Constants/constants.dart';
+import 'package:albab/model/search_model.dart';
+import 'package:albab/providers/school_search_provider.dart';
+import 'package:albab/providers/school_select_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SchoolList extends StatelessWidget {
-  AsyncSnapshot snapshot;
-
-  SchoolList({this.snapshot});
-
   @override
   Widget build(BuildContext context) {
-    return snapshot.data.data.isEmpty
-        ? Center(
-            child: Text(
-            "검색을 하여 주세요.",
-            style: kNaNumLight.copyWith(color: kBlue, fontSize: 32),
-          ))
-        : ListView.builder(
-            shrinkWrap: true,
-            itemCount: snapshot.data.data.length,
-            itemBuilder: (context, int index) {
-              return ListTile(
-                title: Text(snapshot.data.data['school_name']),
-              );
-            },
-          );
+    final searchprovider = Provider.of<SchoolSearchProvider>(context);
+    final selectprovider = Provider.of<SchoolSelectProvider>(context);
+
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: searchprovider.searchModel.data.length,
+      itemBuilder: (context, int index) {
+        return GestureDetector(
+          onTap: () => selectprovider.setData(searchprovider.searchModel.data, index),
+          child: ListTile(
+            title: Text(searchprovider.searchModel.data[index].school_name),
+          ),
+        );
+      },
+    );
   }
 }

@@ -11,7 +11,7 @@ Future<SearchModel> searchData(String schoolName) async {
     final response = await client.get("$baseUrl/search?school_name=$schoolName",
       headers: {"Content-Type":"application/json"});
     if(response.statusCode == 200){
-      return SearchModel.fromJson(json.decode(response.body), false);
+      return SearchModel.fromJson(json.decode(response.body), true);
     }else{
       return SearchModel.fromJson(json.decode(response.body), false);
     }
