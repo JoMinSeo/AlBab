@@ -5,16 +5,17 @@ class MealModel {
 
   final int status;
   final String message;
-  final List<MealDataModel> data;
+  final MealDataModel data;
 
   MealModel({this.status, this.message, this.data});
 
   factory MealModel.fromJson(Map<String, dynamic> json, bool makeData) {
+    print(json);
     if (makeData) {
       return MealModel(
           status: json["status"],
           message: json["message"],
-          data: json["data"],
+          data: MealDataModel.fromJson(json["data"]),
       );
     }
     return MealModel(
@@ -34,8 +35,8 @@ class MealDataModel {
   });
 
   factory MealDataModel.fromJson(Map<String, dynamic> json) => MealDataModel(
-    meal_menu: json["meal"],
-    calories: json["calories"],
+    meal_menu: (json["meal"] as List).map((e) => "$e").toList(),
+    calories: (json["calories"] as List).map((e)=>"$e").toList(),
   );
 
   static MealDataModel empty = MealDataModel(meal_menu: null, calories: null);

@@ -13,29 +13,20 @@ class _MenuListState extends State<MenuList> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: futureMeal,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Text(snapshot.data);
-        } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
-        }
-        return ListView.separated(
-          shrinkWrap: true,
-          separatorBuilder: (BuildContext context, int index) => SizedBox(
-            width: getProportionateScreenWidth(5),
-          ),
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return MenuTile(
-              icon: iconSelect(index),
-              title: titleSelect(index),
-            );
-          },
-          itemCount: 3,
+    return ListView.separated(
+      shrinkWrap: true,
+      separatorBuilder: (BuildContext context, int index) => SizedBox(
+        width: getProportionateScreenWidth(5),
+      ),
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return MenuTile(
+          icon: iconSelect(index),
+          title: titleSelect(index),
+          index: index,
         );
       },
+      itemCount: 3,
     );
   }
 

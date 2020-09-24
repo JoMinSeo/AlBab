@@ -1,5 +1,6 @@
 import 'package:albab/Constants/constants.dart';
 import 'package:albab/components/school_list.dart';
+import 'package:albab/providers/meal_search_provider.dart';
 import 'package:albab/providers/school_search_provider.dart';
 import 'package:albab/providers/school_select_provider.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
@@ -8,11 +9,14 @@ import 'package:provider/provider.dart';
 
 class SchoolSearchScreen extends StatelessWidget {
   String schoolName;
+  DateTime dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
 
     final searchProvider = Provider.of<SchoolSearchProvider>(context);
+    final mealSearchProvider = Provider.of<MealSearchProvider>(context);
+    final selectProvider = Provider.of<SchoolSelectProvider>(context);
 
     return Container(
       color: Color(0xFF757575),
@@ -56,10 +60,12 @@ class SchoolSearchScreen extends StatelessWidget {
                 builder: (ctx, cr, _) {
                   if (cr.status == SearchStatus.complete) {
                     return SchoolList();
-                  } else {
+                  } else if(cr.status == SearchStatus.loading){
                     return Center(
                       child: CircularProgressIndicator(),
                     );
+                  }else{
+                    return Container();
                   }
                 },
               ),
@@ -70,6 +76,7 @@ class SchoolSearchScreen extends StatelessWidget {
                   style:
                       kNaNumLight.copyWith(color: Colors.white, fontSize: 16)),
               onPressed: () {
+                mealSearchProvider.mealSearch(selectProvider.searchDataModel.school_id, selectProvider.searchDataModel.office_code, dateTime);
                 Navigator.pop(context);
               },
             )

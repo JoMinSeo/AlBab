@@ -1,3 +1,4 @@
+import 'package:albab/providers/meal_search_provider.dart';
 import 'package:albab/providers/school_search_provider.dart';
 import 'package:albab/providers/school_select_provider.dart';
 import 'package:albab/screen/prepare/prepare_page.dart';
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: SchoolSelectProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: MealSearchProvider(),
         )
       ],
       child: MaterialApp(

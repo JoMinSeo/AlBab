@@ -12,12 +12,15 @@ Future<MealModel> mealData(String schoolId, String officeCode, DateTime date) as
     final newDate = formatDate(date, [yyyy, '-', mm, '-', dd]);
     final response = await client.get("$baseUrl/meal?school_id=$schoolId&office_code=$officeCode&date=$newDate",
         headers: {"Content-Type": "application/json"});
+    print(response.body);
     if(response.statusCode == 200){
-      return MealModel.fromJson(json.decode(response.body), false);
+      MealModel model  =MealModel.fromJson(json.decode(response.body), true);
+      return model;
     }else{
       return MealModel.fromJson(json.decode(response.body), false);
     }
   } catch (e) {
+    print(e);
     return null;
   }
 }
