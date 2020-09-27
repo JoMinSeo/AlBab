@@ -26,8 +26,8 @@ class MealModel {
 }
 
 class MealDataModel {
-  final List<String> meal_menu;
-  final List<String> calories;
+  List<String> meal_menu;
+  List<String> calories;
 
   MealDataModel({
     @required this.calories,
@@ -40,4 +40,6 @@ class MealDataModel {
   );
 
   static MealDataModel empty = MealDataModel(meal_menu: null, calories: null);
+
+
 }

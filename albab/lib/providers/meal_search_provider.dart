@@ -19,11 +19,8 @@ class MealSearchProvider extends ChangeNotifier{
   Future<void> mealSearch(String schoolId, String officeCode, DateTime date) async{
     status = MealStatus.loading;
     final response = await mealData(schoolId, officeCode, date);
-    print("$schoolId / $officeCode / $date");
     print(response);
-    print(response.status);
     if(response.status == 200){
-      print(response.data);
       mealModel = response;
       status = MealStatus.complete;
       return;

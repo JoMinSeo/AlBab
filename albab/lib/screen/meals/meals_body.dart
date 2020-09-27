@@ -1,7 +1,10 @@
 import 'package:albab/Constants/constants.dart';
 import 'package:albab/components/menu_list.dart';
+import 'package:albab/providers/meal_search_provider.dart';
+import 'package:albab/providers/school_search_provider.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MealsBody extends StatefulWidget {
   @override
@@ -45,7 +48,19 @@ class _MealsBodyState extends State<MealsBody>
             padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
             child: Container(
               height: getProportionateScreenHeight(250),
-              child: MenuList(),
+              child: Consumer<MealSearchProvider>(
+                builder: (ctx, cr, _) {
+                  if (cr.status == MealStatus.complete) {
+                    return MenuList();
+                  } else if(cr.status == MealStatus.loading){
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }else{
+                    return Container();
+                  }
+                },
+              ),
             ),
           ),
         ],

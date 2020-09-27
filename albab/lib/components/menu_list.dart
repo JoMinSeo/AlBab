@@ -1,7 +1,9 @@
 import 'package:albab/components/menu_tile.dart';
 import 'package:albab/model/meal_model.dart';
+import 'package:albab/providers/meal_search_provider.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MenuList extends StatefulWidget {
   @override
@@ -9,24 +11,27 @@ class MenuList extends StatefulWidget {
 }
 
 class _MenuListState extends State<MenuList> {
-  Future<MealModel> futureMeal;
-
   @override
   Widget build(BuildContext context) {
+    final mealProvider = Provider.of<MealSearchProvider>(context);
+
     return ListView.separated(
       shrinkWrap: true,
       separatorBuilder: (BuildContext context, int index) => SizedBox(
         width: getProportionateScreenWidth(5),
       ),
       scrollDirection: Axis.horizontal,
+      itemCount: 3,
+      // itemCount: mealProvider.mealModel.data.meal_menu.length == null ? 0 : mealProvider.mealModel.data.meal_menu.length,
       itemBuilder: (context, index) {
         return MenuTile(
           icon: iconSelect(index),
           title: titleSelect(index),
-          index: index,
+          content: mealProvider.mealModel.data.meal_menu[index].isEmpty
+              ? null
+              : mealProvider.mealModel.data.meal_menu[index],
         );
       },
-      itemCount: 3,
     );
   }
 
