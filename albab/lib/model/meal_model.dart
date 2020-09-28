@@ -13,9 +13,9 @@ class MealModel {
     print(json);
     if (makeData) {
       return MealModel(
-          status: json["status"],
-          message: json["message"],
-          data: MealDataModel.fromJson(json["data"]),
+        status: json["status"],
+        message: json["message"],
+        data: MealDataModel.fromJson(json["data"]),
       );
     }
     return MealModel(
@@ -23,23 +23,42 @@ class MealModel {
       message: json["message"],
     );
   }
+
+  static MealModel empty = MealModel(status: null, message: null, data: null);
 }
 
 class MealDataModel {
-  List<String> meal_menu;
-  List<String> calories;
+  static MealDataModel empty = MealDataModel(meal_menu: null, calories: null);
+
+  List<String> meal_menu = [null, null, null];
+  List<String> calories = [null, null, null];
 
   MealDataModel({
     @required this.calories,
     @required this.meal_menu,
   });
 
-  factory MealDataModel.fromJson(Map<String, dynamic> json) => MealDataModel(
-    meal_menu: (json["meal"] as List).map((e) => "$e").toList(),
-    calories: (json["calories"] as List).map((e)=>"$e").toList(),
-  );
+  factory MealDataModel.fromJson(Map<String, dynamic> json) {
+    if (json == null) return empty;
 
-  static MealDataModel empty = MealDataModel(meal_menu: null, calories: null);
+    List<String> temp = [];
+    List<String> cal_temp = [];
+
+    List<String> meal_menu = [null, null, null];
+    List<String> calories = [null, null, null];
+
+    temp = (json["meal"] as List).map((e) => "$e").toList();
+    cal_temp = (json["calories"] as List).map((e) => "$e").toList();
+
+    for (int i = 0; i < temp.length; i++) {
+      meal_menu[i] = temp[i];
+      calories[i] = cal_temp[i];
+    }
+    return MealDataModel(
+      meal_menu: meal_menu,
+      calories: calories,
+    );
+  }
 
 
 }

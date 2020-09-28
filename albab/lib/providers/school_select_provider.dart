@@ -1,11 +1,13 @@
 import 'package:albab/model/search_model.dart';
 import 'package:flutter/material.dart';
 
-enum SelectStatus { unloading, complete, loading }
+enum SelectStatus { selecting,
+  end_selecting,
+  non_selecting, }
 
 class SchoolSelectProvider extends ChangeNotifier{
-  SelectStatus _status = SelectStatus.unloading;
-  SearchDataModel searchDataModel;
+  SelectStatus _status = SelectStatus.non_selecting;
+  SchoolDataModel schoolDataModel = SchoolDataModel.empty;
 
   SelectStatus get status => _status;
 
@@ -14,8 +16,8 @@ class SchoolSelectProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  void setData(List<SearchDataModel> searchDataModel, int index){
-    this.searchDataModel = searchDataModel[index];
+  void setData(List<SchoolDataModel> searchDataModel, int index){
+    this.schoolDataModel = searchDataModel[index];
     searchDataModel.clear();
   }
 }

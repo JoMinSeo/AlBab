@@ -3,11 +3,11 @@ import 'package:albab/model/search_model.dart';
 import 'package:albab/services/network/meal_data.dart';
 import 'package:flutter/cupertino.dart';
 
-enum MealStatus { unloading, complete, loading }
+enum MealStatus { uncomplete, complete, loading }
 
 class MealSearchProvider extends ChangeNotifier{
-  MealStatus _status = MealStatus.unloading;
-  MealModel mealModel;
+  MealStatus _status = MealStatus.uncomplete;
+  MealModel mealModel = MealModel.empty;
 
   MealStatus get status => _status;
 
@@ -15,6 +15,8 @@ class MealSearchProvider extends ChangeNotifier{
     _status = val;
     notifyListeners();
   }
+
+
 
   Future<void> mealSearch(String schoolId, String officeCode, DateTime date) async{
     status = MealStatus.loading;
@@ -25,7 +27,7 @@ class MealSearchProvider extends ChangeNotifier{
       status = MealStatus.complete;
       return;
     }
-    status = MealStatus.unloading;
+    status = MealStatus.uncomplete;
     return;
   }
 }

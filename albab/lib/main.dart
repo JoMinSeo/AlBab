@@ -1,6 +1,8 @@
+import 'package:albab/Constants/constants.dart';
 import 'package:albab/providers/meal_search_provider.dart';
 import 'package:albab/providers/school_search_provider.dart';
 import 'package:albab/providers/school_select_provider.dart';
+import 'package:albab/providers/swiper_provider.dart';
 import 'package:albab/screen/prepare/prepare_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,10 +22,14 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: MealSearchProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: SwiperProvider(),
         )
       ],
       child: MaterialApp(
         title: 'AlBab',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Color(0xFF067302)),
         home: PreparePage(),
       ),

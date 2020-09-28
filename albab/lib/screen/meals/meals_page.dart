@@ -14,7 +14,7 @@ class _MealsPageState extends State<MealsPage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      body: MealsBody(),
+      body: SafeArea(child: MealsBody()),
       floatingActionButton: FloatingMenu(),
     );
   }

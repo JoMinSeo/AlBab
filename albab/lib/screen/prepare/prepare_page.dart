@@ -9,7 +9,7 @@ class PreparePage extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: PrepareBody(),
+      body: SafeArea(child: PrepareBody()),
     );
   }
 }

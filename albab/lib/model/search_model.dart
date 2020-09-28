@@ -1,47 +1,47 @@
 import 'package:flutter/material.dart';
 
-class SearchModel {
+class SchoolModel {
   List<Object> get props => [status, message, data];
 
   final int status;
   final String message;
-  final List<SearchDataModel> data;
+  final List<SchoolDataModel> data;
 
-  SearchModel({this.status, this.message, this.data});
+  SchoolModel({this.status, this.message, this.data});
 
-  factory SearchModel.fromJson(Map<String, dynamic> json, bool makeData) {
+  factory SchoolModel.fromJson(Map<String, dynamic> json, bool makeData) {
     if (makeData) {
-      return SearchModel(
+      return SchoolModel(
         status: json["status"],
         message: json["message"],
-        data: (json["data"]["school"] as List ).map( (e) => SearchDataModel.fromJson(e)).toList(),
+        data: (json["data"]["school"] as List ).map( (e) => SchoolDataModel.fromJson(e)).toList(),
       );
     }
-    return SearchModel(
+    return SchoolModel(
       status: json["status"],
       message: json["message"],
     );
   }
 }
 
-class SearchDataModel {
+class SchoolDataModel {
   final String school_name;
   final String school_locate;
   final String office_code;
   final String school_id;
 
-  SearchDataModel(
+  SchoolDataModel(
       {@required this.school_name,
         @required this.school_locate,
         @required this.office_code,
         @required this.school_id});
 
-  factory SearchDataModel.fromJson(Map<String, dynamic> json) => SearchDataModel(
+  factory SchoolDataModel.fromJson(Map<String, dynamic> json) => json == null ? empty : SchoolDataModel(
     school_name: json["school_name"],
     school_locate: json["school_locate"],
     office_code: json["office_code"],
     school_id: json["school_id"],
   );
 
-  static SearchDataModel empty = SearchDataModel(school_name: null, school_locate: null, office_code: null, school_id: null);
+  static SchoolDataModel empty = SchoolDataModel(school_name: "", school_locate: "", office_code: "", school_id: "");
 }

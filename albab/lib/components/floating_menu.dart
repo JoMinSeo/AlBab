@@ -1,6 +1,5 @@
 import 'package:albab/Constants/constants.dart';
 import 'package:albab/screen/schoolsearch/school_search.dart';
-import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 

@@ -4,11 +4,19 @@ import 'package:albab/model/search_model.dart';
 import 'package:albab/services/network/search_data.dart';
 import 'package:flutter/material.dart';
 
-enum SearchStatus { uncomplete, complete, loading }
+enum SearchStatus {
+  searching,
+  end_searching,
+  error_search,
+  initialization,
+  end_initialization,
+  saving,
+  end_saving,
+}
 
 class SchoolSearchProvider extends ChangeNotifier {
-  SearchStatus _status = SearchStatus.uncomplete;
-  SearchModel searchModel;
+  SearchStatus _status = SearchStatus.initialization;
+  SchoolModel searchModel;
 
   SearchStatus get status => _status;
 
@@ -18,14 +26,18 @@ class SchoolSearchProvider extends ChangeNotifier {
   }
 
   Future<void> schoolSearch(String schoolName) async {
-    status = SearchStatus.loading;
+    status = SearchStatus.searching;
     final response = await searchData(schoolName);
-    if (response.status == 200) {
+    try {
+      if (response.status == 200) {
+        searchModel = response;
+        status = SearchStatus.end_searching;
+        return;
+      }
       searchModel = response;
-      status = SearchStatus.complete;
-      return;
+      status = SearchStatus.error_search;
+    } on Exception {
+      status = SearchStatus.error_search;
     }
-    status = SearchStatus.uncomplete;
-    return;
   }
 }
