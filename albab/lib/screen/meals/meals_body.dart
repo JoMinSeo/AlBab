@@ -40,7 +40,7 @@ class _MealsBodyState extends State<MealsBody>
           ),
         ),
         Container(
-          height: getProportionateScreenHeight(250),
+          height: getProportionateScreenHeight(270),
           child: Consumer<MealSearchProvider>(
             builder: (ctx, cr, _) {
               if (cr.status == MealStatus.complete) {
