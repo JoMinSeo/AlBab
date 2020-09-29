@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 
-class MenuList extends StatelessWidget {
+class MenuSwiper extends StatelessWidget {
   List<String> menu;
 
   void splitMenu(String menuString) {
@@ -26,15 +26,15 @@ class MenuList extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      height: getProportionateScreenHeight(270),
+      height: getProportionateScreenHeight(300),
       child: Consumer<MealSearchProvider>(
         builder: (ctx, item, _) {
           final meals = item.mealModel;
-          if (item.status == MealStatus.loading) {
+          if (item.status == MealStatus.food_searching) {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (item.status == MealStatus.uncomplete) {
+          } else if (item.status == MealStatus.error_food_searching) {
             return Text("No Data Found");
           }
           return Swiper(
@@ -68,25 +68,42 @@ class MenuList extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      SizedBox(
+                        height: getProportionateScreenHeight(10),
+                      ),
                       Text(
                         titles[index],
                         style: kNaNumRegular.copyWith(
-                            color: Colors.white, fontSize: 20),
+                            color: Colors.white, fontSize: 24),
                       ),
                       Container(
                         child: Builder(
                           builder: (_) {
-                            if (meals.data.meal_menu[index] == null) {
-                              return Text(
-                                "급식이 없습니다.",
-                                style:
-                                    kNaNumLight.copyWith(color: Colors.white),
+                            if (meals.data.meal_menu[index] == "null") {
+                              return Container(
+                                height: getProportionateScreenHeight(200),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "급식이  없습니다.",
+                                    textAlign: TextAlign.center,
+                                    style: kNaNumBold.copyWith(
+                                        fontSize: 16, color: Colors.white),
+                                  ),
+                                ),
                               );
-                            } else if (meals.data.meal_menu[index] == "null") {
-                              return Text(
-                                "급식이 없습니다.",
-                                style:
-                                    kNaNumLight.copyWith(color: Colors.white),
+                            }
+                            if (meals.data.meal_menu[index] == null) {
+                              return Container(
+                                height: getProportionateScreenHeight(200),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "급식이  없습니다.",
+                                    style: kNaNumBold.copyWith(
+                                        fontSize: 16, color: Colors.white),
+                                  ),
+                                ),
                               );
                             }
                             splitMenu(meals.data.meal_menu[index]);
@@ -99,7 +116,7 @@ class MenuList extends StatelessWidget {
                                 child: ListView.builder(
                                   itemBuilder: (_, index) => Padding(
                                     padding: EdgeInsets.only(
-                                      bottom: getProportionateScreenHeight(10),
+                                      bottom: getProportionateScreenHeight(12),
                                     ),
                                     child: Center(
                                       child: Text(

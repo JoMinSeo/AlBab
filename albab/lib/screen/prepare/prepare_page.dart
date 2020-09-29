@@ -8,6 +8,7 @@ class PreparePage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: Colors.white,
       body: SafeArea(child: PrepareBody()),
     );
