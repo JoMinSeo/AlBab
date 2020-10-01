@@ -35,7 +35,12 @@ class MenuSwiper extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (item.status == MealStatus.error_food_searching) {
-            return Text("No Data Found");
+            return Center(
+              child: Text(
+                "급식 정보가 없어요.",
+                style: kNaNumRegular.copyWith(fontSize: 24),
+              ),
+            );
           }
           return Swiper(
             viewportFraction: 0.6,

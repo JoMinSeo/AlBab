@@ -16,7 +16,6 @@ class _MealsBodyState extends State<MealsBody>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-
     final selectProvider = Provider.of<SchoolSelectProvider>(context);
 
     return SingleChildScrollView(
@@ -39,7 +38,9 @@ class _MealsBodyState extends State<MealsBody>
             padding: EdgeInsets.only(bottom: getProportionateScreenWidth(16)),
             child: Center(
               child: Text(
-                selectProvider.schoolDataModel.school_name == "" ? "학교가 검색되지 않았네요" : selectProvider.schoolDataModel.school_name,
+                selectProvider.schoolDataModel.school_name == ""
+                    ? "학교가 검색되지 않았네요"
+                    : selectProvider.schoolDataModel.school_name,
                 style: kNaNumRegular.copyWith(fontSize: 20),
               ),
             ),
@@ -56,25 +57,8 @@ class _MealsBodyState extends State<MealsBody>
           Container(
             color: kRed,
             height: getProportionateScreenHeight(300),
-            child: Consumer<MealSearchProvider>(builder: (ctx, cr, _) {
-              if (cr.status == MealStatus.end_food_searching) {
-                return MenuSwiper();
-              }
-              if (cr.status == MealStatus.food_searching) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              if(cr.status == MealStatus.error_food_searching){
-                return Center(
-                  child: Text(
-                    "급식 정보가 없어요.",
-                    style: kNaNumRegular.copyWith(fontSize: 24),
-                  ),
-                );
-              }
-            }),
-          )
+            child: MenuSwiper(),
+          ),
         ],
       ),
     );
