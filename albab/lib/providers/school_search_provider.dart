@@ -15,6 +15,9 @@ enum SearchStatus {
 }
 
 class SchoolSearchProvider extends ChangeNotifier {
+  final textController = TextEditingController();
+  final scrollController = ScrollController();
+
   SearchStatus _status = SearchStatus.initialization;
   SchoolModel searchModel;
 
@@ -25,10 +28,11 @@ class SchoolSearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> schoolSearch(String schoolName) async {
-    status = SearchStatus.searching;
-    final response = await searchData(schoolName);
+  Future<void> schoolSearch() async {
+    String schoolName = textController.text;
     try {
+      status = SearchStatus.searching;
+      final response = await searchData(schoolName);
       if (response.status == 200) {
         searchModel = response;
         status = SearchStatus.end_searching;

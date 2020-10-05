@@ -40,13 +40,14 @@ class SchoolSearchScreen extends StatelessWidget {
                   style: kNaNumExtraBold.copyWith(fontSize: 28, color: kBlue),
                 ),
                 TextField(
+                  controller: searchProvider.textController,
                   // autofocus: true,
                   textAlign: TextAlign.start,
                   decoration: InputDecoration(
                     hintText: "학교를 검색하여주세요.",
                     suffixIcon: IconButton(
                       onPressed: () {
-                        searchProvider.schoolSearch(schoolName);
+                        searchProvider.schoolSearch();
                       },
                       icon: Icon(Icons.search, color: kBlue),
                     ),
@@ -87,7 +88,10 @@ class SchoolSearchScreen extends StatelessWidget {
                           ),
                           actions: [
                             new FlatButton(
-                              child: new Text("확인", style: kNaNumExtraBold.copyWith(color: kBlue),),
+                              child: new Text(
+                                "확인",
+                                style: kNaNumExtraBold.copyWith(color: kBlue),
+                              ),
                               onPressed: () {
                                 Navigator.pop(context);
                               },
@@ -100,7 +104,9 @@ class SchoolSearchScreen extends StatelessWidget {
                           selectProvider.schoolDataModel.school_id,
                           selectProvider.schoolDataModel.office_code,
                           dateTime);
-                      Navigator.pop(context);
+                      searchProvider.searchModel.data.clear();
+                      searchProvider.textController.clear();
+                      Navigator.pop(context, false);
                     }
                   },
                 )

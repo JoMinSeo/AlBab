@@ -73,7 +73,12 @@ class _MealsBodyState extends State<MealsBody>
                           if (i.status == MealStatus.food_searching)
                             return CircularProgressIndicator();
                           if (i.status == MealStatus.error_food_searching)
-                            return Text("급식을 찾을 수 가 없습니다.");
+                            return Center(
+                              child: Text(
+                                "급식 정보가 없어요.",
+                                style: kNaNumRegular.copyWith(fontSize: 24),
+                              ),
+                            );
                           return Consumer<SwiperProvider>(
                             builder: (ctx, item, _) {
                               double value = 0;

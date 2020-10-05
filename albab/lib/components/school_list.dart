@@ -21,7 +21,7 @@ class SchoolList extends StatelessWidget {
               vertical: getProportionateScreenHeight(10)),
           child: InkWell(
             onTap: () =>
-                selectprovider.setData(searchprovider.searchModel.data, index),
+                selectprovider.selectSchool(searchprovider.searchModel.data[index]),
             child: Row(
               children: <Widget>[
                 Container(
