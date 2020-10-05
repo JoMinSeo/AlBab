@@ -3,9 +3,11 @@ import 'package:albab/providers/meal_search_provider.dart';
 import 'package:albab/providers/school_search_provider.dart';
 import 'package:albab/providers/school_select_provider.dart';
 import 'package:albab/providers/swiper_provider.dart';
+import 'package:albab/screen/meals/meals_page.dart';
 import 'package:albab/screen/prepare/prepare_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +33,16 @@ class MyApp extends StatelessWidget {
         title: 'AlBab',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Color(0xFF067302)),
-        home: PreparePage(),
+        home: Consumer<SchoolSelectProvider>(
+          builder: (ctx, item, _){
+            if (item.status == SelectStatus.selecting) {
+              return Scaffold(body: CircularProgressIndicator());
+            } else if (item.status == SelectStatus.end_selecting) {
+              return MealsPage();
+            }
+            return PreparePage();
+          },
+        ),
       ),
     );
   }

@@ -17,7 +17,7 @@ class _MealsPageState extends State<MealsPage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    final provider = Provider.of<SchoolSelectProvider>(context, listen: false);
+    final provider = Provider.of<SchoolSelectProvider>(context);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<MealSearchProvider>(context, listen: false)
           .mealSearch(provider.schoolDataModel.school_id, provider.schoolDataModel.office_code, DateTime.now());

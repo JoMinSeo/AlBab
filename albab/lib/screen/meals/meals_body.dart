@@ -1,4 +1,5 @@
 import 'package:albab/Constants/constants.dart';
+import 'package:albab/components/calGraph.dart';
 import 'package:albab/components/menu_swiper.dart';
 import 'package:albab/providers/meal_search_provider.dart';
 import 'package:albab/providers/school_select_provider.dart';
@@ -16,7 +17,7 @@ class _MealsBodyState extends State<MealsBody>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    final selectProvider = Provider.of<SchoolSelectProvider>(context);
+    final selectProvider = Provider.of<SchoolSelectProvider>(context, listen: false);
 
     return SingleChildScrollView(
       child: Column(
@@ -61,36 +62,53 @@ class _MealsBodyState extends State<MealsBody>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
+                    color: kRed,
                     height: getProportionateScreenHeight(300),
                     child: MenuSwiper(),
                   ),
                   SizedBox(
-                    width: getProportionateScreenWidth(200),
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: Consumer<MealSearchProvider>(
-                        builder: (ctx, i, _) {
-                          if (i.status == MealStatus.food_searching)
-                            return CircularProgressIndicator();
-                          if (i.status == MealStatus.error_food_searching)
-                            return Center(
-                              child: Text(
-                                "급식 정보가 없어요.",
-                                style: kNaNumRegular.copyWith(fontSize: 24),
-                              ),
+                    height: getProportionateScreenHeight(32),
+                  ),
+                  Container(
+                    color: kRed,
+                    child: SizedBox(
+                      width: getProportionateScreenWidth(200),
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: Consumer<MealSearchProvider>(
+                          builder: (ctx, i, _) {
+                            if (i.status == MealStatus.food_searching)
+                              return CircularProgressIndicator();
+                            if (i.status == MealStatus.error_food_searching)
+                              return Center(
+                                child: Text(
+                                  "급식 정보가 없어요.",
+                                  style: kNaNumRegular.copyWith(fontSize: 24),
+                                ),
+                              );
+                            return Consumer<SwiperProvider>(
+                              builder: (ctx, item, _) {
+                                double value = 0;
+                                final meal = i.mealModel.getFromIdx(item.index);
+                                if (meal != "null" && !i.mealModel.isEmpty(item.index)){
+                                  // if(i.mealModel.data.calories[item.index] == null){
+                                  //   value = 0;
+                                  // }
+                                  // if(i.mealModel.data.calories[item.index] == "null"){
+                                  //   value = 0;
+                                  // }
+                                  value = double.parse(i.mealModel
+                                      .getFromIdx(item.index)
+                                      .replaceAll(" Kcal", ""));
+                                }
+                                return AnimatedKcalGraph(
+                                  key: UniqueKey(),
+                                  value: value,
+                                );
+                              },
                             );
-                          return Consumer<SwiperProvider>(
-                            builder: (ctx, item, _) {
-                              double value = 0;
-                              final meal = i.mealModel.getFromIdx(item.index);
-                              if (!i.mealModel.isEmpty(item.index))
-                                value = double.parse(i.mealModel
-                                    .getFromIdx(item.index)
-                                    .replaceAll(" Kcal", ""));
-                              return Text("$value");
-                            },
-                          );
-                        },
+                          },
+                        ),
                       ),
                     ),
                   ),
@@ -106,3 +124,7 @@ class _MealsBodyState extends State<MealsBody>
   @override
   bool get wantKeepAlive => true;
 }
+
+// value = double.parse(i.mealModel
+//     .getFromIdx(item.index)
+// .replaceAll(" Kcal", ""));
