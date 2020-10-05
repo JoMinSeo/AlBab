@@ -18,8 +18,6 @@ class MealSearchProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-
-
   Future<void> mealSearch(String schoolId, String officeCode, DateTime date) async{
     status = MealStatus.food_searching;
     final response = await mealData(schoolId, officeCode, date);

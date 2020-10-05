@@ -9,6 +9,29 @@ class MealModel {
 
   MealModel({this.status, this.message, this.data});
 
+  String getFromIdx(idx) {
+    if (idx == 0) return data.calories[idx];
+    if (idx == 1) return data.calories[idx];
+    if (idx == 2) return data.calories[idx];
+    return null;
+  }
+
+  // bool get isNotEmpty =>
+  //     breakfast != MealsDataModel.empty &&
+  //         lunch != MealsDataModel.empty &&
+  //         dinner != MealsDataModel.empty;
+
+  isEmpty(idx) {
+    if (idx == 0)
+      return data.meal_menu[idx] == null &&
+          data.calories[idx] == null;
+    if (idx == 1)
+      return data.meal_menu[idx] == null && data.calories[idx] == null;
+    if (idx == 2)
+      return data.meal_menu[idx] == null && data.calories[idx] == null;
+    return false;
+  }
+
   factory MealModel.fromJson(Map<String, dynamic> json, bool makeData) {
     print(json);
     if (makeData) {

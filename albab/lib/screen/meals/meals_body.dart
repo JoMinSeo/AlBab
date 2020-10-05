@@ -1,8 +1,8 @@
 import 'package:albab/Constants/constants.dart';
 import 'package:albab/components/menu_swiper.dart';
 import 'package:albab/providers/meal_search_provider.dart';
-import 'package:albab/providers/school_search_provider.dart';
 import 'package:albab/providers/school_select_provider.dart';
+import 'package:albab/providers/swiper_provider.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,10 +54,44 @@ class _MealsBodyState extends State<MealsBody>
               ),
             ),
           ),
-          Container(
-            color: kRed,
-            height: getProportionateScreenHeight(300),
-            child: MenuSwiper(),
+          SingleChildScrollView(
+            child: SizedBox(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    height: getProportionateScreenHeight(300),
+                    child: MenuSwiper(),
+                  ),
+                  SizedBox(
+                    width: getProportionateScreenWidth(200),
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Consumer<MealSearchProvider>(
+                        builder: (ctx, i, _) {
+                          if (i.status == MealStatus.food_searching)
+                            return CircularProgressIndicator();
+                          if (i.status == MealStatus.error_food_searching)
+                            return Text("급식을 찾을 수 가 없습니다.");
+                          return Consumer<SwiperProvider>(
+                            builder: (ctx, item, _) {
+                              double value = 0;
+                              final meal = i.mealModel.getFromIdx(item.index);
+                              if (!i.mealModel.isEmpty(item.index))
+                                value = double.parse(i.mealModel
+                                    .getFromIdx(item.index)
+                                    .replaceAll(" Kcal", ""));
+                              return Text("$value");
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
