@@ -10,9 +10,8 @@ final baseUrl = "http://34.64.101.114";
 Future<MealModel> mealData(String schoolId, String officeCode, DateTime date) async {
   try {
     final newDate = formatDate(date, [yyyy, '-', mm, '-', dd]);
-    final response = await client.get("$baseUrl/meal?school_id=$schoolId&office_code=$officeCode&date=2020-10-05",
+    final response = await client.get("$baseUrl/meal?school_id=$schoolId&office_code=$officeCode&date=${date.year}-${date.month}-${date.day}",
         headers: {"Content-Type": "application/json"});
-    print(response.body);
     if(response.statusCode == 200){
       MealModel model  =MealModel.fromJson(json.decode(response.body), true);
       return model;

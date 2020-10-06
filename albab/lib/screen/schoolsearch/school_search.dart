@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 
 class SchoolSearchScreen extends StatelessWidget {
   String schoolName;
-  DateTime dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -102,8 +101,7 @@ class SchoolSearchScreen extends StatelessWidget {
                     } else {
                       mealSearchProvider.mealSearch(
                           selectProvider.schoolDataModel.school_id,
-                          selectProvider.schoolDataModel.office_code,
-                          dateTime);
+                          selectProvider.schoolDataModel.office_code);
                       searchProvider.searchModel.data.clear();
                       searchProvider.textController.clear();
                       Navigator.pop(context, false);

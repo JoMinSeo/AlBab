@@ -7,12 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:provider/provider.dart';
 
-class MealsPage extends StatefulWidget {
-  @override
-  _MealsPageState createState() => _MealsPageState();
-}
-
-class _MealsPageState extends State<MealsPage> {
+class MealsPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -20,7 +15,7 @@ class _MealsPageState extends State<MealsPage> {
     final provider = Provider.of<SchoolSelectProvider>(context);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<MealSearchProvider>(context, listen: false)
-          .mealSearch(provider.schoolDataModel.school_id, provider.schoolDataModel.office_code, DateTime.now());
+          .mealSearch(provider.schoolDataModel.school_id, provider.schoolDataModel.office_code);
     });
 
     return Scaffold(

@@ -16,11 +16,6 @@ class MealModel {
     return null;
   }
 
-  // bool get isNotEmpty =>
-  //     breakfast != MealsDataModel.empty &&
-  //         lunch != MealsDataModel.empty &&
-  //         dinner != MealsDataModel.empty;
-
   isEmpty(idx) {
     if (idx == 0)
       return data.meal_menu[idx] == null &&

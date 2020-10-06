@@ -6,6 +6,7 @@ import 'package:albab/providers/school_select_provider.dart';
 import 'package:albab/providers/swiper_provider.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:provider/provider.dart';
 
 class MealsBody extends StatefulWidget {
@@ -17,6 +18,7 @@ class _MealsBodyState extends State<MealsBody>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    final mealProvider = Provider.of<MealSearchProvider>(context, listen: false);
     final selectProvider = Provider.of<SchoolSelectProvider>(context, listen: false);
 
     return SingleChildScrollView(
@@ -49,6 +51,33 @@ class _MealsBodyState extends State<MealsBody>
           Padding(
             padding: EdgeInsets.only(bottom: getProportionateScreenWidth(16)),
             child: Center(
+              child: GestureDetector(
+                onTap: () {
+                  final now = DateTime.now();
+                  DatePicker.showDatePicker(
+                    context,
+                    locale: LocaleType.ko,
+                    onConfirm: (date) {
+                      print(date);
+                      mealProvider.time = date;
+                      mealProvider.mealSearch(selectProvider.schoolDataModel.school_id, selectProvider.schoolDataModel.office_code);
+                    },
+                    currentTime: mealProvider.time,
+                    minTime: DateTime(now.year, 1, 1),
+                    maxTime: DateTime(now.year, now.month,
+                        DateTime(now.year, now.month + 1, 0).day),
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Icon(Icons.calendar_today),
+                ),
+              )
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: getProportionateScreenWidth(16)),
+            child: Center(
               child: Text(
                 "메뉴",
                 style: kNaNumRegular.copyWith(fontSize: 24),
@@ -62,7 +91,6 @@ class _MealsBodyState extends State<MealsBody>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    color: kRed,
                     height: getProportionateScreenHeight(300),
                     child: MenuSwiper(),
                   ),
@@ -70,7 +98,6 @@ class _MealsBodyState extends State<MealsBody>
                     height: getProportionateScreenHeight(32),
                   ),
                   Container(
-                    color: kRed,
                     child: SizedBox(
                       width: getProportionateScreenWidth(200),
                       child: AspectRatio(
