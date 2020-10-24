@@ -19,6 +19,7 @@ class MealsPage extends StatelessWidget{
     });
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(child: MealsBody()),
       floatingActionButton: FloatingMenu(),
     );

@@ -53,7 +53,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/mainimage.png
+    - assets/images/
   fonts:
     - family: NaNum
       fonts:

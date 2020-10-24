@@ -26,6 +26,7 @@ class _FloatingMenuState extends State<FloatingMenu>
 
   @override
   initState() {
+    //여기
     _animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500))
           ..addListener(() {

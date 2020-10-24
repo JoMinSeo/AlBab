@@ -28,6 +28,7 @@ class _AnimatedKcalGraphState extends State<AnimatedKcalGraph>
 
   @override
   void initState() {
+    //여기
     controller = AnimationController(
       duration: Duration(milliseconds: 600),
       vsync: this,

@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:albab/Constants/constants.dart';
 import 'package:albab/components/calGraph.dart';
 import 'package:albab/components/menu_swiper.dart';
@@ -7,6 +9,7 @@ import 'package:albab/providers/swiper_provider.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 
 class MealsBody extends StatefulWidget {
@@ -16,10 +19,16 @@ class MealsBody extends StatefulWidget {
 
 class _MealsBodyState extends State<MealsBody>
     with AutomaticKeepAliveClientMixin {
+  final gifList = ['tennis.gif', 'run.gif', 'balling.gif'];
+  final exerciseList = ['tennis', 'run', 'bowling'];
+  int swiperIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    final mealProvider = Provider.of<MealSearchProvider>(context, listen: false);
-    final selectProvider = Provider.of<SchoolSelectProvider>(context, listen: false);
+    final mealProvider =
+        Provider.of<MealSearchProvider>(context, listen: false);
+    final selectProvider =
+        Provider.of<SchoolSelectProvider>(context, listen: false);
 
     return SingleChildScrollView(
       child: Column(
@@ -60,7 +69,9 @@ class _MealsBodyState extends State<MealsBody>
                     onConfirm: (date) {
                       print(date);
                       mealProvider.time = date;
-                      mealProvider.mealSearch(selectProvider.schoolDataModel.school_id, selectProvider.schoolDataModel.office_code);
+                      mealProvider.mealSearch(
+                          selectProvider.schoolDataModel.school_id,
+                          selectProvider.schoolDataModel.office_code);
                     },
                     currentTime: mealProvider.time,
                     minTime: DateTime(now.year, 1, 1),
@@ -72,7 +83,7 @@ class _MealsBodyState extends State<MealsBody>
                   padding: EdgeInsets.all(20),
                   child: Icon(Icons.calendar_today),
                 ),
-              )
+              ),
             ),
           ),
           Padding(
@@ -117,7 +128,8 @@ class _MealsBodyState extends State<MealsBody>
                               builder: (ctx, item, _) {
                                 double value = 0;
                                 final meal = i.mealModel.getFromIdx(item.index);
-                                if (meal != "null" && !i.mealModel.isEmpty(item.index)){
+                                if (meal != "null" &&
+                                    !i.mealModel.isEmpty(item.index)) {
                                   // if(i.mealModel.data.calories[item.index] == null){
                                   //   value = 0;
                                   // }
@@ -139,6 +151,41 @@ class _MealsBodyState extends State<MealsBody>
                       ),
                     ),
                   ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: getProportionateScreenHeight(400),
+                    child: Swiper(
+                      viewportFraction: 0.6,
+                      scale: 0.8,
+                      index: swiperIndex,
+                      onIndexChanged: (index) {
+                        setState(() {
+                          print(index);
+                          swiperIndex = index;
+                        });
+                      },
+                      loop: false,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Image(
+                                height: getProportionateScreenHeight(300),
+                                image: AssetImage('assets/images/${gifList[index]}'),
+                              ),
+                            ),
+                            Text(
+                              exerciseList[index],
+                              style: kNaNumBold,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  )
                 ],
               ),
             ),

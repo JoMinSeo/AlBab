@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'AlBab',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: Color(0xFF067302)),
+        theme: ThemeData(primaryColor: kBlue),
         home: Consumer<SchoolSelectProvider>(
           builder: (ctx, item, _){
             if (item.status == SelectStatus.selecting) {
