@@ -1,4 +1,5 @@
 import 'package:albab/Constants/constants.dart';
+import 'package:albab/screen/bug/bugreport_page.dart';
 import 'package:albab/screen/schoolsearch/school_search.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +80,10 @@ class _FloatingMenuState extends State<FloatingMenu>
       child: FloatingActionButton(
         backgroundColor: kBlue,
         heroTag: "FAB1",
-        onPressed: null,
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => BugReportPage()));
+        },
         tooltip: 'BUG',
         child: Icon(Icons.bug_report),
       ),
