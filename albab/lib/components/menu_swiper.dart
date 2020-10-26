@@ -15,7 +15,7 @@ class MenuSwiper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mealProvider = Provider.of<MealSearchProvider>(context);
+    // final mealProvider = Provider.of<MealSearchProvider>(context);
     final swiper = Provider.of<SwiperProvider>(context, listen: false);
     final titles = ["아침", "점심", "저녁"];
 
