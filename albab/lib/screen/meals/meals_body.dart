@@ -8,8 +8,10 @@ import 'package:albab/providers/school_select_provider.dart';
 import 'package:albab/providers/swiper_provider.dart';
 import 'package:albab/services/sizes/sizeconfig.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class MealsBody extends StatefulWidget {
@@ -19,9 +21,14 @@ class MealsBody extends StatefulWidget {
 
 class _MealsBodyState extends State<MealsBody>
     with AutomaticKeepAliveClientMixin {
-  final gifList = ['tennis.gif', 'run.gif', 'balling.gif'];
+  final gifList = ['tennis.json', 'running.json', 'bowling.json'];
   final exerciseList = ['tennis', 'run', 'bowling'];
   int swiperIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,8 +159,11 @@ class _MealsBodyState extends State<MealsBody>
                     ),
                   ),
                   SizedBox(
+                    height: getProportionateScreenHeight(36),
+                  ),
+                  SizedBox(
                     width: double.infinity,
-                    height: getProportionateScreenHeight(400),
+                    height: getProportionateScreenHeight(500),
                     child: Swiper(
                       viewportFraction: 0.6,
                       scale: 0.8,
@@ -170,22 +180,30 @@ class _MealsBodyState extends State<MealsBody>
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: Image(
-                                height: getProportionateScreenHeight(300),
-                                image: AssetImage('assets/images/${gifList[index]}'),
+                            ClipOval(
+                              child: Lottie.asset(
+                                'assets/images/${gifList[index]}',
                               ),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(12),
                             ),
                             Text(
                               exerciseList[index],
-                              style: kNaNumBold,
+                              style: kNaNumExtraBold.copyWith(fontSize: 24),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(12),
+                            ),
+                            Text(
+                              "이 운동은 이만큼의 칼로리를 소모합니다.",
+                              style: kNaNumRegular.copyWith(fontSize: 20),
                             ),
                           ],
                         );
                       },
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

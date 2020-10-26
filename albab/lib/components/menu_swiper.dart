@@ -18,11 +18,6 @@ class MenuSwiper extends StatelessWidget {
     final mealProvider = Provider.of<MealSearchProvider>(context);
     final swiper = Provider.of<SwiperProvider>(context, listen: false);
     final titles = ["아침", "점심", "저녁"];
-    final List<IconData> iconData = [
-      Icons.wb_sunny,
-      Icons.wb_cloudy,
-      Icons.lightbulb_outline
-    ];
 
     return SizedBox(
       width: double.infinity,
